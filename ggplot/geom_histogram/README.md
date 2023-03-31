@@ -19,7 +19,7 @@ ggplot(data = df, aes(x = value)) +
 
 このコードを実行すると、以下のようなヒストグラムが表示されます。
 
-![](../image/geom_histogram.png)
+![geom_histogram](../image/geom_histogram.png)
 
 このグラフは、x軸に値が、y軸にデータの出現頻度が表示されます。データの分布がどのようになっているかを直感的に把握することができます。また、geom_histogram()関数には、binの幅や色、外側の枠線の太さなどを変更するためのオプションがあります。
 
