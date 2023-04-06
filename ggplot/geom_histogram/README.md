@@ -2,7 +2,7 @@
 
 ggplot2のgeom_histogramは、データの分布をヒストグラムで描画するために使用されます。以下は、geom_histogramを使用してヒストグラムを作成するための簡単なサンプルコードです。
 
-``` R
+``` r
 library(ggplot2)
 
 # データセットの作成
