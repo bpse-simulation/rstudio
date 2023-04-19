@@ -1,9 +1,6 @@
 library(ggplot2)
 library(scales)
 
-# データの準備
-df <- read.csv("samples\\RD training.csv")
-
 # 対数グラフの外枠の作成
 g <- ggplot() +
   annotation_logticks(sides = "l", size = 0.5) + #対数表示は縦軸，左側のみ軸表示，目盛り線の太さ
@@ -32,34 +29,37 @@ g <- ggplot() +
   labs(x = expression(paste("Culture time ", italic("t"), " (h)", sep = "")), 
        y = expression(paste("Cell density ", italic("X"["t"]), " (cells/cm"^2, ")", sep = "")))
 
+# データの準備
+df <- read.csv("samples\\RD training.csv")
+
 g <- g +
   geom_point(data = df, aes(x = t, y = mean), # データフレームの指定
-             colour = "black", alpha = 1, #線の色と透明度
-             size = 10, shape = 1, stroke = 1.5) + 
+             colour = "black", alpha = 1, # 線の色と透明度
+             shape = 21, size = 10, stroke = 1.5) + # 形と大きさと線の太さ
   geom_errorbar(data = df, aes(x = t, y = mean, ymax = mean + sd, ymin = mean - sd), # geom_errorbarでエラーバー追加
                 width = 3,  # 横棒の長さ
                 size = 1) # 線の太さ
 
-df1 <- df[1:4,] # 対数増殖期が24h-96hの場合
-
-# 指数描画①
-g <- g +
-  #geom_smooth(data=df1, aes(x=t, y=mean), method="nls", formula=y~a*exp(b*x), se=FALSE, method.args=list(start=list(a=2000, b=0.01)))
-  stat_smooth(data=df1, aes(x=t, y=mean), method="nls", formula="y~a*exp(b*x)", se=FALSE, method.args=list(start=c(a=2000, b=0.01)))
+# 対数増殖期に合わせて調整（これは24h-72hの場合）
+df1 <- df[1:3,]
 
 # 指数回帰
 x <- df1$t
 y <- df1$mean
-expfit <- nls(y~a*exp(b*x), start=list(a=3000, b=0.02))
-# 結果
-a <- summary(expfit)$coefficients[1,1]
-b <- summary(expfit)$coefficients[2,1]
-
+expfit <- nls(y ~ a * exp(b * x), start = list(a = 3000, b = 0.02))
+# 推定値
+a <- summary(expfit)$coefficients[1, 1]
+b <- summary(expfit)$coefficients[2, 1]
+# データの準備
 y_est <- a * exp(b * x)
-df2 <- cbind(df1, y_est)
-# 指数描画②
-g <- g +
-  geom_line(data=df2, aes(x=t,y=y_est), size = 1)
+df1 <- cbind(df1, y_est)
+# 指数回帰描画①
+g <- g + geom_line(data = df1, aes(x = t, y = y_est), size = 1)
+
+## 指数回帰描画②（こっちだと対数軸で直線に描画されなかった）
+#g <- g +
+#  #geom_smooth(data = df1, aes(x = t, y = mean), method = "nls", formula = y ~ a * exp(b * x), se = FALSE, method.args = list(start = list(a = 3000, b = 0.02)))
+#  stat_smooth(data = df1, aes(x = t, y = mean), method = "nls", formula = "y ~ a * exp(b * x)", se = FALSE, method.args = list(start = list(a = 3000, b = 0.02)))
 
 # グラフの描画
 plot(g)
