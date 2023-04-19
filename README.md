@@ -49,10 +49,14 @@
 
 以上が、RとRStudioのインストールと基本的な使い方の説明です。RとRStudioはともに無料で利用できます。
 
-## csvファイル読み込み
+## csvファイル読み込み関数
 
 [read.csv](read.csv/README.md)
 
-## グラフ描画
+## グラフ描画関数
 
 [ggplot](ggplot/README.md)
+
+## サンプルコード
+
+[samples](samples)
