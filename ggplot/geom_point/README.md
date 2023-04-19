@@ -21,7 +21,7 @@ ggplot(data = df, aes(x = x, y = y)) +
 
 このコードを実行すると、以下のような散布図が表示されます。
 
-![geom_point](../image/geom_point.png)
+![geom_point](geom_point.png)
 
 このグラフは、x軸にxの値が、y軸にyの値が表示されます。それぞれの点は、xとyの値を持ちます。このグラフは、データ間の相関関係や分布の形状を直感的に把握することができます。
 
