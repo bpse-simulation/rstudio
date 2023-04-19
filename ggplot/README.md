@@ -40,3 +40,12 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
 ```
 
 このコードは、irisデータセットからSepal.LengthとSepal.Widthの2つの変数を選択し、Speciesの要素によって色分けされた散布図を作成します。また、図にタイトル、x軸とy軸のラベル、色のラベルを追加しています。
+
+## 他の例
+
+- [geom_bar](geom_bar)
+- [geom_boxplot](geom_boxplot)
+- [geom_histogram](geom_histogram)
+- [geom_line](geom_line)
+- [geom_point](geom_point)
+- [geom_tile](geom_tile)

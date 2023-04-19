@@ -1,7 +1,7 @@
 library(ggplot2)
 library(scales)
 
-celldens <- read.csv("ggplot\\geom_line\\celldensity.csv")
+celldens <- read.csv("samples\\sim_cell_density.csv")
 celldens1 <- celldens[-1,-1] # 1行目，1列目を削除する
 #celldens1 <- t(celldens1) # データの行と列を入れ替える場合に使う
 
@@ -14,7 +14,7 @@ for (i in 1:50) {
 }
 
 # 対数グラフの作成
-ggplot(df, aes(x=t, y=y, group=s)) +
+g<-ggplot(df, aes(x=t, y=y, group=s)) +
   geom_line(colour = "black", alpha = 0.1, size=1) + #線の色と透明度
   annotation_logticks(sides = "l", size = 0.5) + #対数表示は縦軸，左側のみ軸表示，線の太さ
   scale_y_log10(breaks = trans_breaks("log10", function(x) 10^x, n=5),
@@ -35,3 +35,4 @@ ggplot(df, aes(x=t, y=y, group=s)) +
         panel.background = element_rect(fill = "white", colour = "black", size = 1.2), #fillは枠内の色、colourは枠線の色、sizeは枠線の太さ
         legend.position = "none") + #凡例を表示しない
   labs(x = "Culture time (h)", y = expression(paste("Cell density (", {"cells/cm"^2}, ")", sep="")))
+plot(g)
