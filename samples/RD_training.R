@@ -6,12 +6,12 @@ g <- ggplot() +
   annotation_logticks(sides = "l", size = 0.5) + #対数表示は縦軸，左側のみ軸表示，目盛り線の太さ
   scale_y_log10(limits = c(1e3, 1.5e5), # 軸の範囲
                 expand = c(0, 0), # 軸の両端の余白の設定
-                breaks = trans_breaks("log10", function(x) 10^x, n=2), # 主目盛りの数
+                breaks = trans_breaks("log10", function(x) 10^x, n = 2), # 主目盛りの数
                 labels = trans_format("log10", math_format(10^.x)), # ラベルの表示設定
                 oob = oob_keep) + # 範囲外の値の扱い
-  scale_x_continuous(limits = c(0, 135), # 軸の範囲
+  scale_x_continuous(limits = c(0, 130), # 軸の範囲
                      expand = c(0, 0), # 軸の両端の余白の設定
-                     breaks = seq(0, 125, length=6), # 主目盛りの数
+                     breaks = seq(0, 125, length = 6), # 主目盛りの数
                      oob = oob_keep) + # 範囲外の値の扱い
   theme(axis.ticks.length = unit(-3, "mm"), # 目盛り線の長さ
         axis.ticks = element_line(size = 1), # 目盛り線の太さ
@@ -20,9 +20,9 @@ g <- ggplot() +
         axis.text.y = element_text(margin = margin(r = 10, unit = "pt")), # y軸と値との間隔
         axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0)), # x軸の名前と軸との間隔
         axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)), # y軸の名前と軸との間隔
-        axis.title = element_text(size = 24), # 軸タイトル
-        panel.grid.major = element_blank(), # グリッドは入れない
-        panel.grid.minor = element_blank(), # グリッドは入れない
+        axis.title = element_text(size = 24), # 軸タイトル文字サイズ
+        panel.grid.major = element_blank(), # 主グリッドは入れない
+        panel.grid.minor = element_blank(), # 補助グリッドは入れない
         plot.margin = unit(c(1, 1, 0.5, 0.5), "cm"), # グラフ全体の余白 t, r, b, l
         panel.background = element_rect(fill = "white", colour = "black", size = 1.2), # fillは枠内の色、colourは枠線の色、sizeは枠線の太さ
         legend.position = "none") + # 凡例を表示しない
@@ -30,7 +30,7 @@ g <- ggplot() +
        y = expression(paste("Cell density ", italic("X"["t"]), " (cells/cm"^2, ")", sep = ""))) # y軸の説明
 
 # データの準備
-df <- read.csv("samples\\RD training.csv")
+df <- read.csv("samples\\RD_training.csv")
 
 g <- g +
   geom_point(data = df, aes(x = t, y = mean), # データフレームの指定
@@ -63,3 +63,6 @@ g <- g + geom_line(data = df1, aes(x = t, y = y_est), size = 1, colour = "blue")
 
 # グラフの描画
 plot(g)
+
+# 画像保存
+ggsave("samples\\RD_training.png", plot = g, width = 520, height = 500, units = "px", dpi = 72)

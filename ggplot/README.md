@@ -1,28 +1,25 @@
-# ggplot
+# ggplot()
 
 ggplot2は、R言語のグラフィックスパッケージであり、データを視覚化するための多くのツールを提供します。ggplot2の最も重要なコンセプトは、グラフの要素をレイヤーとして考えることです。ggplot2を使用すると、データを取得して可視化することができます。
 
-ggplot2は、多くの種類のグラフを作成することができます。散布図、棒グラフ、ヒストグラム、箱ひげ図などがあります。ggplot2は、データを視覚的に比較し、分析するための強力なツールです。ggplot2は、カスタマイズ可能で、美しいグラフを作成するための多くのオプションを提供します。また、ggplot2のグラフは、他のプログラムで使用することもできます。
-
-ggplot2は、論文に掲載する図としても適切です。ggplot2を使用することで、データを分析することが容易になり、視覚的に分かりやすい図を作成することができます。ggplot2の図は、カスタマイズが容易で、論文のテーマに合わせた図を作成することができます。また、ggplot2の図は、データの傾向を分かりやすく表現することができるため、論文の結果を視覚化するのに適しています。
+ggplot2は、多くの種類のグラフを作成することができます。散布図、棒グラフ、ヒストグラム、箱ひげ図などがあります。ggplot2は、データを視覚的に比較し、分析するための強力なツールです。ggplot2は、カスタマイズ可能で、美しいグラフを作成するための多くのオプションを提供します。
 
 ## インストール
 
 ggplot2は、CRAN（Comprehensive R Archive Network）からRパッケージをダウンロードしてインストールすることができます。RまたはRStudioを開き、以下の手順に従ってggplot2をインストールすることができます。
 
-1.  RまたはRStudioを開きます。
+1. RまたはRStudioを開きます。
+2. コンソールに以下のコマンドを入力し、ggplot2パッケージをインストールします。インストールが完了するまで、数分かかる場合があります。
 
-2.  コンソールに以下のコマンドを入力し、ggplot2パッケージをインストールします。インストールが完了するまで、数分かかる場合があります。
+    ```r
+    install.packages("ggplot2")
+    ```
 
-``` r
-install.packages("ggplot2")
-```
+3. インストールが完了したら、ライブラリを読み込むために以下のコマンドを入力します。
 
-3.  インストールが完了したら、ライブラリを読み込むために以下のコマンドを入力します。
-
-``` r
-library(ggplot2)
-```
+    ```r
+    library(ggplot2)
+    ```
 
 以上の手順でggplot2をインストールし、使用することができます。
 
@@ -32,7 +29,7 @@ library(ggplot2)
 
 例えば、以下のようにRコードを記述することで、ggplot2を使用した散布図を作成することができます。
 
-``` r
+```r
 library(ggplot2)
 ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
   geom_point() +
@@ -43,9 +40,9 @@ ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
 
 ## 他の例
 
-- [geom_bar](geom_bar)
-- [geom_boxplot](geom_boxplot)
-- [geom_histogram](geom_histogram)
-- [geom_line](geom_line)
-- [geom_point](geom_point)
-- [geom_tile](geom_tile)
+- [棒グラフ：geom_bar()](geom_bar)
+- [箱ひげ図：geom_boxplot()](geom_boxplot)
+- [ヒストグラム：geom_histogram()](geom_histogram)
+- [折れ線グラフ：geom_line()](geom_line)
+- [散布図：geom_point()](geom_point)
+- [ヒートマップ：geom_tile()](geom_tile)
